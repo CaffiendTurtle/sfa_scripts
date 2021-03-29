@@ -47,9 +47,19 @@ class SmartSaveUI(QtWidgets.QDialog):
     def create_connections(self):
         self.folder_browse_btn.clicked.connect(self._browse_folder)
         self.save_btn.clicked.connect(self._save)
+        self.save_increment_btn.clicked.connect(self._save_increment)
+
+    @QtCore.Slot()
+    def _save_increment(self):
+        self._set_scenefile_properties_from_ui()
+        self.scenefile.save_increment()
+        self.ver_sbx.setValue(self.scenefile.ver)
 
     @QtCore.Slot()
     def _save(self):
+        self._set_scenefile_properties_from_ui()
+
+    def _set_scenefile_properties_from_ui(self):
         self.scenefile.folder_path = self.folder_le.text()
         self.scenefile.descriptor = self.descriptor_le.text()
         self.scenefile.task = self.task_le.text()
@@ -190,7 +200,7 @@ class SceneFile(object):
         latest_ver_num = int(latest_scenefile.split("_v")[-1])
         return latest_ver_num + 1
 
-    def increment_save(self):
+    def save_increment(self):
         """Increments the version and saves the scene file.
 
         If the existing version of a file already exists, it should increment
