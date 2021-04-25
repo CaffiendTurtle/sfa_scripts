@@ -24,4 +24,10 @@ def place_instances():
         yRot = random.uniform(0, 360)
         zRot = random.uniform(0, 360)
         cmds.rotate(xRot, yRot, zRot, new_instance)
+        # creates random scaling for each instance based upon a hard code range
+        # needs to be placed in its own function and needs to be a for loop
+        # need the range to be selective
+        scaling_Factor = random.uniform(100, 200)
+        cmds.scale(scaling_Factor, scaling_Factor, scaling_Factor,
+                   new_instance)
 
