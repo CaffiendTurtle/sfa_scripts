@@ -26,7 +26,6 @@ def ran_scaling(new_instance, min_size, max_size):
 def place_instances():
     selected_geo = cmds.ls(orderedSelection=True, flatten=True)
     selected_verts = cmds.filterExpand(expand=True, selectionMask=31)
-    # user_input()
     minX_rotation = int(input())
     maxX_rotation = int(input())
     minY_rotation = int(input())
